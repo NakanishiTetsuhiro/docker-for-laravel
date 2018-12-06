@@ -1,0 +1,47 @@
+version: '3.2'
+services:
+  nginx:
+    build:
+      context: ./nginx
+    ports:
+      - "8002:80"
+      - "447:443"
+    volumes:
+      - ./${PROJECT_NAME}/public:/app/public/:cached
+      - composer-volume:/app/vendor
+      - node-modules-volume:/app/node_modules
+    depends_on:
+      - php
+  php:
+    build:
+      context: ./php-fpm
+    volumes:
+      - ./${PROJECT_NAME}:/app
+    depends_on:
+      - db
+  db:
+    build:
+      context: ./mysql
+    volumes:
+      - mysql-volume:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+    ports:
+      - 3312:3306
+  yarn:
+    build:
+      context: ./yarn
+    volumes:
+      - ./${PROJECT_NAME}:/app:cached
+      - node-modules-volume:/app/node_modules
+  # mailhog:
+  #   build:
+  #     context: ./mailhog
+  #   ports:
+  #     - "1025:1025"
+  #     - "8025:8025"
+volumes:
+  composer-volume:
+  node-modules-volume:
+  mysql-volume:
