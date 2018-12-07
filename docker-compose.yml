@@ -7,8 +7,6 @@ services:
       - 8000:8000
     volumes:
       - ${PROJECT_NAME}:/app:cached
-      - composer-volume:/app/vendor
-      - node-modules-volume:/app/node_modules
     command: ["php", "artisan", "serve", "--host", "0.0.0.0"]
     tty: true
     stdin_open: true
@@ -37,6 +35,5 @@ services:
       - "1025:1025"
       - "8025:8025"
 volumes:
-  composer-volume:
-  node-modules-volume:
   mysql-volume:
+  node-modules-volume:
