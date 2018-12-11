@@ -4,9 +4,9 @@ services:
     build:
       context: ./php
     ports:
-      - 8000:8000
+      - ${PHP_PORT}:8000
     volumes:
-      - ${PROJECT_NAME}:/app:cached
+      - ./${PROJECT_NAME}:/app:cached
     command: ["php", "artisan", "serve", "--host", "0.0.0.0"]
     tty: true
     stdin_open: true
@@ -21,12 +21,12 @@ services:
       MYSQL_DATABASE: ${DB_NAME}
       MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
     ports:
-      - 3310:3306
+      - ${DB_PORT}:3306
   yarn:
     build:
       context: ./yarn
     volumes:
-      - ${PROJECT_NAME}:/app:cached
+      - ./${PROJECT_NAME}:/app:cached
       - node-modules-volume:/app/node_modules
   mailhog:
     build:
