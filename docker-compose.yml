@@ -32,8 +32,8 @@ services:
     build:
       context: ./mailhog
     ports:
-      - "1025:1025"
-      - "8025:8025"
+      - "${SMTP_PORT}:1025"
+      - "${HTTP_PORT}:8025"
 volumes:
   mysql-volume:
   node-modules-volume:
