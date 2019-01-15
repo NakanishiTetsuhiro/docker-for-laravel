@@ -1,5 +1,6 @@
 build:
 	docker-compose run --rm php composer install
+	docker-compose run --rm php php artisan key:generate
 	docker-compose run --rm php php artisan migrate:fresh --seed
 	docker-compose run --rm yarn install
 	docker-compose run --rm yarn run dev
@@ -13,6 +14,7 @@ testing:
 clear:
 	docker-compose run --rm php php artisan cache:clear
 	docker-compose run --rm php php artisan config:clear
+	docker-compose run --rm php php artisan view:clear
 
 tinker: ## Run tinker
 	docker-compose run --rm php php artisan tinker
