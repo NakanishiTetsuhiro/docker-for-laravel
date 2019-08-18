@@ -1,4 +1,4 @@
-FROM node:9-alpine
+FROM node:10-alpine
 LABEL maintainer "saboyutaka<yutaka.paradigm.shift@gmail.com>"
 
 RUN mkdir -p /app
@@ -9,6 +9,7 @@ RUN apk --no-cache update && \
     rm -fr /var/cache/apk/*
 
 RUN npm install -g npm && \
-    npm install -g yarn
+    npm install -g yarn && \
+    npm config set scripts-prepend-node-path true
 
 ENTRYPOINT ["yarn"]
