@@ -1,5 +1,5 @@
 FROM node:10-alpine
-LABEL maintainer "saboyutaka<yutaka.paradigm.shift@gmail.com>"
+LABEL maintainer "TETSU<kaoru6strings@gmail.com>"
 
 RUN mkdir -p /app
 WORKDIR /app
