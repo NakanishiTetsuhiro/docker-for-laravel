@@ -8,7 +8,7 @@ Laravel動かす用のDocker環境です
 2. `cd YOUR_PROJECT_NAME`
 3. `cp env-example .env`
 4. .envに値を書き込む
-5. laravelのプロジェクトをディレクトリルートに配置します
+5. laravelのプロジェクトをルートディレクトリに配置します
 6. `docker-compose up -d`
 
 ## Special Thanks!
