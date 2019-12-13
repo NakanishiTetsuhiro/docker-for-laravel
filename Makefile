@@ -1,3 +1,6 @@
+init-project:
+	docker-compose run --rm php composer create-project laravel/laravel .
+
 build:
 	docker-compose run --rm php composer install
 	docker-compose run --rm php php artisan key:generate
