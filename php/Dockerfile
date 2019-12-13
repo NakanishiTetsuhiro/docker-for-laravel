@@ -1,4 +1,4 @@
-FROM php:7.2-alpine
+FROM php:7.3-alpine
 LABEL maintainer "TETSU<kaoru6strings@gmail.com>"
 
 RUN apk --no-cache add \
@@ -8,7 +8,8 @@ RUN apk --no-cache add \
         libjpeg-turbo-dev \
         libpng-dev \
         libxml2-dev \
-        zlib-dev && \
+        zlib-dev \
+        libzip-dev && \
     NPROC=$(grep -c ^processor /proc/cpuinfo 2>/dev/null || 1) && \
     docker-php-ext-install -j${NPROC} \
         curl \
