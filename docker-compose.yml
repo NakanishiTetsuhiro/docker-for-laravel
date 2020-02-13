@@ -1,17 +1,20 @@
 version: '3.7'
 services:
+  nginx:
+    build:
+      context: ./nginx
+    ports:
+      - ${NGINX_HTTP_PORT}:80
+    depends_on:
+      - php
+    volumes:
+      - ./${PROJECT_NAME}/public:/app/public:cached
+      - ./${PROJECT_NAME}/storage:/app/storage:cached
   php:
     build:
       context: ./php
-    ports:
-      - ${PHP_PORT}:8000
     volumes:
       - ./${PROJECT_NAME}:/app:cached
-    command: ["php", "artisan", "serve", "--host", "0.0.0.0"]
-    tty: true
-    stdin_open: true
-    depends_on:
-      - db
   db:
     build:
       context: ./mysql
